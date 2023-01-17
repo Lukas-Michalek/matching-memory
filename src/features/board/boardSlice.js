@@ -15,6 +15,9 @@ const initialState = [
   
   export const boardReducer = (state = initialState, action) => {
     switch (action.type) {
+      
+      // TODO => setBoard action receives payload(array of randomized words) and returns an entirely new array of card objects)
+      
       case 'board/setBoard':
         let setState = [];
         action.payload.forEach((element, index) => 
@@ -24,14 +27,22 @@ const initialState = [
                         matched: false})
         );
         return setState;
+
+
+      // TODO => flipCard action receives an ID of card to flip over and sets the visible property to true
       case 'board/flipCard':
         let flipState = [...state];
         const cardID = action.payload;
         flipState[cardID] = {...state[cardID], visible:true}
         
+
+          // TODO=> Note that const [index1, index2] means that cards will be replacing other
+
         const [index1, index2] = flipState
           .filter(card => card.visible)
           .map(card => card.id);
+
+        // TODO => It then goes on to check if 2 cards are visible, and if so, if they have same content. If this is true both cards have their matched property set to true
         if (index2 !== undefined){
           const card1 = flipState[index1];
           const card2 = flipState[index2];
@@ -40,11 +51,14 @@ const initialState = [
             flipState[index2] = {...card2, visible: false, matched: true}
           }
         } 
-  
         return flipState;
+
+      
+      // TODO => resetCards action return an array of card objects where the visible property is set to false
       case 'board/resetCards':
         return state.map(card => ({...card, visible: false}));
-      default:
+      
+        default:
         return state;
     }
   }
@@ -58,6 +72,7 @@ const initialState = [
     'react-redux', 'react-redux',
   ]
   
+  // This is utility function which although called by action creator is executed outside, keeping action creator PURE
   const randomWords = () => {
     let words = []
     let newWordPairs = [...wordPairs]

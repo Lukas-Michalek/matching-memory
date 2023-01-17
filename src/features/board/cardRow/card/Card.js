@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { selectVisibleIDs, flipCard, selectMatchedIDs } from '../../boardSlice'
+import { selectVisibleIDs, flipCard, selectMatchedIDs, resetCards } from '../../boardSlice'
 
 
 let cardLogo = "https://static-assets.codecademy.com/Courses/Learn-Redux/matching-game/codecademy_logo.png";
@@ -16,6 +16,11 @@ export const Card = ({ id, contents }) => {
   // flip card action
   const flipHandler = (id) => {
     dispatch(flipCard(id));
+    
+  };
+
+  const tryAgainHandler = () => {
+    dispatch(resetCards())
     
   };
 
@@ -39,12 +44,24 @@ export const Card = ({ id, contents }) => {
     cardStyle = 'matched';
   }
 
+
+
   // 3rd if statement
   // implement number of flipped cards check
-  if (visibleIDs.length ===2) {
+  //TODO=> If 2 cards are flipped click will not do anything => click = () => {};
+  
+  if (visibleIDs.length === 2) {   
     
-    click = () => {};
+    // cardStyle = 'no-match';
+    // click = dispatch(resetCards())
+    click = tryAgainHandler;
   }
+
+// If 2 cards are selected and are NOT in matchedIDs change cardStyle to no-match(red color)
+  if (visibleIDs.length === 2 && !matchedIDs.includes(id)){
+     
+    cardStyle = 'no-match'
+    }
 
   return (
     <button onClick={click} className={`card ${cardStyle}`}>
