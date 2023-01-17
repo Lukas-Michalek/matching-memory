@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/matching-memory/static/css/main.4ca36c5e.css",
+    "main.js": "/matching-memory/static/js/main.38369ea3.js",
+    "index.html": "/matching-memory/index.html",
+    "main.4ca36c5e.css.map": "/matching-memory/static/css/main.4ca36c5e.css.map",
+    "main.38369ea3.js.map": "/matching-memory/static/js/main.38369ea3.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4ca36c5e.css",
+    "static/js/main.38369ea3.js"
+  ]
+}
