@@ -1,7 +1,7 @@
 import React from 'react';
-// Add import statements below
+import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { selectVisibleIDs } from '../../boardSlice'
+import { selectVisibleIDs, flipCard } from '../../boardSlice'
 
 
 let cardLogo = "https://static-assets.codecademy.com/Courses/Learn-Redux/matching-game/codecademy_logo.png";
@@ -9,10 +9,11 @@ let cardLogo = "https://static-assets.codecademy.com/Courses/Learn-Redux/matchin
 export const Card = ({ id, contents }) => {
   // Add selected data and dispatch variables below
   const visibleIDs = useSelector(selectVisibleIDs);
+  const dispatch = useDispatch();
   
   // flip card action
   const flipHandler = (id) => {
-    // Add action dispatch below
+    dispatch(flipCard(id));
     
   };
 
@@ -38,7 +39,8 @@ export const Card = ({ id, contents }) => {
 
   // 3rd if statement
   // implement number of flipped cards check
-  if (false) {
+  if (visibleIDs.length ===2) {
+    
     click = () => {};
   }
 
